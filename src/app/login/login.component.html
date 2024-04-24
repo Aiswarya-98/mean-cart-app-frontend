@@ -29,9 +29,6 @@
       <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="fw-bolder text-danger ">*Invalid password</div>
 
 
-      
-     
-
       <div class="text-center">
         <button data-mdb-ripple-init type="submit" class="mt-2  btn btn-primary btn-block" (click)="login()">login </button>
         <div> <a routerLink="/register">New here? Register Now!!</a> </div>

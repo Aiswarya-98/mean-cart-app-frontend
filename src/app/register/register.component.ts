@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,7 @@ export class RegisterComponent {
     email:['',[Validators.required,Validators.email]],
     password:['',[Validators.required,Validators.pattern("[a-zA-Z0-9]*")]]
   })
-  constructor(private fb:FormBuilder, private api:ApiService, private router:Router) {}
+  constructor(private fb:FormBuilder, private api:ApiService, private router:Router, private toaster:ToastrService) {}
 
   register(){
 
@@ -33,7 +34,8 @@ export class RegisterComponent {
 
       this.api.registerAPI(user).subscribe({
         next:(res:any)=>{
-          alert(`${res.username} has registererd successfully`)
+          // alert(`${res.username} has registererd successfully`)
+          this.toaster.success(`${res.username} has been registered successfully`)
           this.registerForm.reset()
           this.router.navigateByUrl('/login')
         },
@@ -43,7 +45,8 @@ export class RegisterComponent {
         }
       })
     }else{
-      alert("Invalid user")
+      // alert("Invalid user")
+      this.toaster.warning("Invalid user")
     }
   }
 

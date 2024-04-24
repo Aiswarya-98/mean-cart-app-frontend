@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent {
     email:['',[Validators.required,Validators.email]],
     password:['',[Validators.required,Validators.pattern("[a-zA-Z0-9]*")]]
   })
-  constructor(private fb:FormBuilder, private api:ApiService, private router:Router) {}
+  constructor(private toaster:ToastrService,private fb:FormBuilder, private api:ApiService, private router:Router) {}
 
 
   login(){
@@ -32,17 +33,20 @@ export class LoginComponent {
       this.api.loginAPI(user).subscribe({
         next:(res:any)=>{
 
-          alert(`${res.existingUser.username} logged in successfully`)
+          // alert(`${res.existingUser.username} logged in successfully`)
+          this.toaster.success(`${res.existingUser.username} logged in successfully!`)
           sessionStorage.setItem("existingUser",JSON.stringify(res.existingUser))
           sessionStorage.setItem("token",res.token)
           this.loginForm.reset()
           this.router.navigateByUrl("")
         },error:(reason:any)=>{
-          alert(reason.error)
+          // alert(reason.error)
+          this.toaster.warning(reason.error)
         }
       })
     }else{
-      alert("Invalid email or password")
+      // alert("Invalid email or password")
+      this.toaster.warning("Invalid email or password!!")
     }
   }
 }
