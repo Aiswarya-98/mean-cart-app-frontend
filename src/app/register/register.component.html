@@ -1,0 +1,55 @@
+<div style="width: 100%;height: 80vh; background-image: url();" class="d-flex justify-content-center align-items-center">
+  <div style="width: 900px;" class="shadow   row rounded p-5 align-items-center ">
+    <div class="bg-light  col-lg-6">
+      <img src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?size=626&ext=jpg&ga=GA1.1.109004980.1701787441&semt=sph" class="img-fluid " alt="">
+    </div>
+    <div class="col-lg-6">
+      
+      <form [formGroup]="registerForm" class="border p-3 rounded" >
+        <h1 class="fw-bolder">Register FORM </h1>
+        <!-- <pre>
+          {{email}}
+          {{password}}
+        </pre> -->
+
+          <!-- invalid username -->
+        <div *ngIf="registerForm.get('username')?.errors && registerForm.get('username')?.touched" class="fw-bolder text-danger ">*Invalid Username</div>
+
+        <div class="form-floating mb-3">
+          <input name="username" formControlName="username" type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required >
+          <label for="floatingInput"> Username</label>
+        </div>
+
+                <!-- invalid email -->
+
+                <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="fw-bolder text-danger ">*Invalid email</div>
+
+
+        <div class="form-floating mb-3">
+          <input name="email" formControlName="email" type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required >
+          <label for="floatingInput">Email address</label>
+        </div>
+
+        <!-- invalid password -->
+
+        <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="fw-bolder text-danger ">*Invalid password</div>
+
+
+        <div class="form-floating mb-3">
+          <input name="password" formControlName="password"  type="password" class="form-control" id="floatingInputpswd" placeholder="Password" pattern="[a-zA-Z0-9]*" minlength="3" required >
+        <label for="floatingInputpswd">Password</label>
+      </div>
+
+
+      <div class="text-center">
+        <button data-mdb-ripple-init type="submit" class="mt-2  btn btn-primary btn-block" (click)="register()">Sign-up </button>
+        <div> <a routerLink="/login">Already registered? Login here!</a> </div>
+      </div>
+
+
+    </form>
+    
+  </div>
+  </div>
+  
+</div>
