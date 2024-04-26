@@ -16,15 +16,26 @@
           </form>
         </li>
         <li class="nav-item ms-2">
-          <button routerLink="/wishlist" class="btn btn-outline-dark" type="submit"><i class="fa-solid fa-heart"></i>Wishlist<span class="badge bg-dark">0</span></button>
+          <button routerLink="/wishlist" class="btn btn-outline-dark" type="submit"><i class="fa-solid fa-heart"></i>Wishlist<span class="badge bg-dark">{{wishlistCount}}</span></button>
 
         </li>
         <li class="nav-item ms-2">
-          <button routerLink="/cart" class="btn btn-outline-warning" type="submit"><i class="fa-solid fa-cart-shopping"></i>Cart<span class="badge bg-dark">0</span></button>
+          <button routerLink="/cart" class="btn btn-outline-warning" type="submit"><i class="fa-solid fa-cart-shopping"></i>Cart<span class="badge bg-dark">{{cartlistCount}}</span></button>
 
         </li>
         <li class="nav-item ms-2">
-          <button routerLink="/login" class="btn btn-outline-success" type="submit"><i class="fa-solid fa-right-to-bracket"></i>Login</button>
+          <button *ngIf="!loginUsername" routerLink="/login" class="btn btn-outline-success" type="submit"><i class="fa-solid fa-right-to-bracket"></i>Login</button>
+
+          
+        </li>
+
+        <li class="nav-item  ms-2 ">
+          <p class="border rounded ms-auto p-2">{{loginUsername}}</p>
+
+        </li>
+
+        <li class="nav-item ms-2">
+          <button (click)="logout()" *ngIf="loginUsername" class="btn btn-outline-success" type="submit"><i class="fa-solid fa-right-to-bracket" ></i>Logout</button>
 
         </li>
    

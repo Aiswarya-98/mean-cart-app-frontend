@@ -1,1 +1,41 @@
-<p>user-wishlist works!</p>
+<app-header></app-header>
+
+<section class="py-5">
+
+  <div *ngIf="allProducts.length==0" class="d-flex justify-content-between align-items-center w-100 flex-column">
+    <img src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-2130356-1800917.png" alt="" class="image-fluid" style="height: 70vh;">
+    <h1 class="text-danger">Your wishlist is empty</h1>
+  </div>
+
+  <div *ngIf="allProducts.length!==0" class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+        <div *ngFor="let product of allProducts" class="col mb-5">
+            <div class="card h-100">
+                <!-- Product image-->
+                <img routerLink="/view/product/{{product.id}}" class="card-img-top" [src]="product.image"  [alt]="product.title" height="300px" width="350px"/>
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">{{product.title.slice(0,20)}}</h5>
+                        <!-- Product price-->
+                        {{product.price}} 
+                    </div>
+                </div>
+                <!-- Product actions-->
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <!-- <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div> -->
+
+                    <div class="d-flex justify-content-between">
+                      <button (click)="removeItem(product._id)" class="btn" ><i class="fa-solid fa-trash text-danger"></i></button>
+                      <button (click)="addToCart(product)" class="btn" ><i class="fa-solid fa-cart-shopping text-success"></i></button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</section>

@@ -10,7 +10,7 @@ import { UserCartComponent } from './user-cart/user-cart.component';
 const routes: Routes = [
 
   {path:'',component:AllProductsComponent},
-  {path:'views/id',component:ViewProductsComponent},
+  {path:'view/product/:id',component:ViewProductsComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'wishlist',component:UserWishlistComponent},
